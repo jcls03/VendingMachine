@@ -7,27 +7,28 @@ namespace Capstone
 {
     public class VendingMachineFileReader
     {
-        static void Main()
+        public List<VendingMachineItem> ReadFile()
         {
-            
-
-            
-
-            using (StreamReader sr = new StreamReader(vendingmachine.csv))
+            List<VendingMachineItem> stock = new List<VendingMachineItem>();
+            using (StreamReader sr = new StreamReader("vendingmachine.csv"))
             {
                 while (!sr.EndOfStream)
                 {
                     string line = sr.ReadLine();
+                    string [] parts = line.Split('|');
+                    VendingMachineItem vmi = new VendingMachineItem(parts[3], parts[1], decimal.Parse(parts[2]), parts[0]);
+                    stock.Add(vmi);
 
-                    VendingMachineFileReader reader = new VendingMachineFileReader();
-                    List<VendingMachineItems> stock = reader.ReadFile(line);
 
-                    VendingMachine vm = new VendingMachine(stock);
+
+                    
+                    
+                                   
 
                 }
             }
 
-                
+            return stock;    
                  
         }
     }

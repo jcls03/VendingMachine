@@ -24,7 +24,13 @@ namespace Capstone
         /// <summary>
         /// The Item is in stock
         /// </summary>
-        public bool IsStocked { get; }
+        public bool IsStocked
+        {
+            get
+            {
+                return Quantity > 0;
+            }
+        }
 
         /// <summary>
         /// What slot the item is located in
@@ -42,11 +48,13 @@ namespace Capstone
         /// <param name="type">Sets the type</param>
         /// <param name="name">Sets the name</param>
         /// <param name="price">Sets the price</param>
-        public VendingMachineItem(string type, string name, decimal price)
+        public VendingMachineItem(string type, string name, decimal price, string slotIdentifier)
         {
             this.Type = type;
             this.Name = name;
             this.Price = price;
+            this.SlotIdentifier = slotIdentifier;
+            this.Quantity = 5;          
         }
 
         /// <summary>
