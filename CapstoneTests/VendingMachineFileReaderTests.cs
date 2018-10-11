@@ -6,21 +6,21 @@ using System.Text;
 
 namespace CapstoneTests
 {
-    [TestClass]
-    public class VendingMachineFileReaderTests
-    {
-        [DataTestMethod]
-        [DataRow("A1", "Potato Crisps", 3.05, "Chip")]
-        public void ReturnItem(string )
-        {
-            //arrange
-            VendingMachineFileReader vmfr = new VendingMachineFileReader();
+    //[TestClass]
+    //public class VendingMachineFileReaderTests
+    //{
+    //    [DataTestMethod]
+    //    [DataRow("A1", "Potato Crisps", 3.05, "Chip")]
+    //    public void ReturnItem(string)
+    //    {
+    //        //arrange
+    //        VendingMachineFileReader vmfr = new VendingMachineFileReader();
 
-            //act
+    //        //act
 
 
-            //assert
-            Assert.AreEqual()
-        }
-    }
+    //        //assert
+    //        Assert.AreEqual()
+    //    }
+    //}
 }

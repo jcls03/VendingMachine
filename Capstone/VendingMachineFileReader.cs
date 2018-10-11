@@ -18,16 +18,8 @@ namespace Capstone
                     string [] parts = line.Split('|');
                     VendingMachineItem vmi = new VendingMachineItem(parts[3], parts[1], decimal.Parse(parts[2]), parts[0]);
                     stock.Add(vmi);
-
-
-
-                    
-                    
-                                   
-
                 }
             }
-
             return stock;    
                  
         }
