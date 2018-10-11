@@ -36,7 +36,7 @@ namespace Capstone
                 }
                 else if (input == "2")
                 {
-                    Submenu2 submenu = new Submenu2();
+                    Submenu2 submenu = new Submenu2(vm);
                     submenu.Display();
                 }
                 else if (input == "Q")

@@ -6,6 +6,7 @@ namespace Capstone
 {
     public class VendingMachine
     {
+        public VendingMachineItem vmi;
         /// <summary>
         /// Holds vending machine stock
         /// </summary>
@@ -26,18 +27,31 @@ namespace Capstone
         /// Amount of money entered by user
         public decimal FeedMoney(decimal amountOfMoney)
         {
-            return 0.00M;
+            Balance += amountOfMoney;
+            return Balance;
         }
 
         /// <summary>
-        /// Seleting a product from a location in vending machine
+        /// Selecting a product from a location in vending machine
         /// </summary>
         /// <param name="SlotIdentifier"></param>
         /// <returns>string</returns>
-        public VendingMachineItem SelectProduct (string SlotIdentifier)
+        public VendingMachineItem SelectProduct(string SlotIdentifier)
         {
-            return null;
+            VendingMachineItem vmi = null;
+            foreach(VendingMachineItem item in Stock)
+            {
+                if(item.SlotIdentifier == SlotIdentifier)
+                {                 
+                    vmi = item;
+                    item.Quantity -= 1;
+                    Balance -= item.Price;
+                }
+            }
+          return vmi;
+                
         }
+        
         /// <summary>
         /// Dispense the item
         /// </summary>
@@ -55,8 +69,14 @@ namespace Capstone
         /// <returns>decimal</returns>
         public decimal GiveChange (decimal Change)
         {
+            if(Balance < vmi.Price)
+            {
+                Console.WriteLine("This item costs more than you can afford. Give us more money, ya cheapskate!");
+                return 0.00M;
+            }
             return 0.00M;
         }       
+        
 
         //NEED TO REVISIT AUDIT!!!!!!
         //public string Audit(string Date, string Time, FeedMoney, )

@@ -40,7 +40,7 @@ namespace Capstone
         /// <summary>
         /// How many Items are left
         /// </summary>
-        public int Quantity { get; }
+        public int Quantity { get; set; }
 
         /// <summary>
         /// Instantiates a new vending machine Item
