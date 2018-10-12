@@ -6,13 +6,19 @@ namespace Capstone
 {
     public class VendingMachine
     {
+        /// <summary>
+        /// Instantiates a new vending machine item
+        /// </summary>
         public VendingMachineItem vmi;
+
         /// <summary>
         /// Holds vending machine stock
-        /// </summary>
-        
+        /// </summary>        
         public List<VendingMachineItem> Stock { get; }
 
+        /// <summary>
+        /// Holds the vending machine balance
+        /// </summary>
         public decimal Balance { get; protected set; }
 
         /// <summary>
@@ -27,10 +33,32 @@ namespace Capstone
         /// Amount of money entered by user
         public decimal FeedMoney(decimal amountOfMoney)
         {
-            Balance += amountOfMoney;
+            if (amountOfMoney > 0M)
+            {
+                Log newLog = new Log();
+                string transaction = " FEED MONEY:  $";
+                transaction += amountOfMoney;
+
+                Balance += amountOfMoney;
+
+                transaction = transaction + " $" + Balance;
+                newLog.WriteToLog(transaction.PadRight(20));
+
+                return Balance;
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("HAHA What is this? We don't take negative money here pal!");
+            }
             return Balance;
         }
 
+        /// <summary>
+        /// Says if item is in stock
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns>bool</returns>
         public bool IsInStock(VendingMachineItem item)
         {
             if(item.Quantity > 0)
@@ -42,7 +70,6 @@ namespace Capstone
                 return false;
             }
         }
-
         /// <summary>
         /// Selecting a product from a location in vending machine
         /// </summary>
@@ -53,44 +80,42 @@ namespace Capstone
             VendingMachineItem vmi = null;
             foreach(VendingMachineItem item in Stock)
             {
-                if(item.SlotIdentifier == SlotIdentifier && item.Quantity > 0)
+                if(item.SlotIdentifier == SlotIdentifier)
                 {                 
                     vmi = item;
-                    item.Quantity -= 1;
-                    Balance -= item.Price;
                 }
             }
-          return vmi;
-                
-        }
-        
-        ///// <summary>
-        ///// Dispense the item
-        ///// </summary>
-        ///// <param name="name"></param>
-        ///// <returns></returns>
-        //public string GiveItem (string name)
-        //{
-        //    return null;
-        //}       
-
-        /// <summary>
-        /// Gives change to user (if needed)
-        /// </summary>
-        /// <param name="Change"></param>
-        /// <returns>decimal</returns>
-        public decimal GiveChange (decimal Change)
-        {
+            if(vmi == null)
+            {
+                throw new VendingMachineException("This position does not exist, try again, Dummy!");
+            }
+            if(vmi.Quantity == 0)
+            {
+                throw new VendingMachineException("Sorry, this delicious goodness is so popular it is OUT OF STOCK!");
+            }
             if(Balance < vmi.Price)
             {
-                
-                return 0.00M;
+                throw new VendingMachineException("This item costs more than you can afford. Give us more money, ya cheapskate!");
+               
             }
-            return 0.00M;
-        }       
-        
 
-        //NEED TO REVISIT AUDIT!!!!!!
-        //public string Audit(string Date, string Time, FeedMoney, )
+            Log newLog = new Log();
+            string transaction = $" {vmi.Name} {vmi.SlotIdentifier} ${Balance}";
+
+            vmi.Quantity -= 1;
+            Balance -= vmi.Price;
+
+            transaction = transaction + " $" + Balance;
+            newLog.WriteToLog(transaction.PadLeft(20));
+
+            return vmi;               
+        }
+        /// <summary>
+        /// Clears the balance
+        /// </summary>
+        public void ClearBalance()
+        {
+            Balance = 0;
+        }
     }
 }

@@ -54,18 +54,35 @@ namespace Capstone
             this.Name = name;
             this.Price = price;
             this.SlotIdentifier = slotIdentifier;
-            this.Quantity = 1;          
+            this.Quantity = 5;          
         }
 
         /// <summary>
         /// After Item is dispensed, this noise is made
         /// </summary>
         /// <returns></returns>
-        public string GetsConsumed()
+        public string GetsConsumed(string Type)
         {
-            return null;
+            if(Type == "Chip")
+            {
+                return "Crunch Crunch, Yum Yum!";
+            }
+            else if(Type == "Candy")
+            {
+                return "Munch Munch, Yum Yum!";
+            }
+            else if(Type == "Drink")
+            {
+                return "Glug Glug, Yum Yum!";
+            }
+            else if (Type == "Gum")
+            {
+                return "Chew Chew, Yum Yum!";
+            }
+            else
+            {
+                return "";
+            }
         }
-
-
     }
 }

@@ -22,21 +22,26 @@ namespace Capstone
         public int Dimes { get; private set; }
 
         /// <summary>
-        /// Total change returned to user
+        /// Holds the change to return to user
         /// </summary>
-        public decimal TotalChange { get; private set; }
-
+        /// <param name="balance"></param>
+        /// <returns>string</returns>
         public string CalculatedChange (decimal balance)
         {
-            decimal change = 0M;
+            Log newLog = new Log();
+            string transaction = " GIVE CHANGE:  $";
+            transaction += balance;
 
+            decimal change = 0M;           
             change = balance;
 
-           
+            transaction = transaction + " $" + 0;
+            newLog.WriteToLog(transaction.PadLeft(20));
+
             while (change -.25M >= 0.0M)
             {
                 change -= .25M;
-                Quarters++;
+                Quarters++;             
             }
             while (change -.10M >= 0.0M)
             {
@@ -49,10 +54,39 @@ namespace Capstone
                 Nickels++;
             }
 
-
-
-
-            return $"Your change is {Quarters} Quarters and {Dimes} Dimes.";
+            if (Quarters != 0 && Dimes != 0 && Nickels != 0)
+            {
+                return $"Your change is {Quarters} Quarter(s), {Dimes} Dime(s), and {Nickels} Nickel(s).";
+            }
+            else if (Quarters != 0 && Dimes != 0)
+            {
+                return $"Your change is {Quarters} Quarter(s) and {Dimes} Dime(s).";
+            }
+            else if (Quarters != 0 && Nickels != 0)
+            {
+                return $"Your change is {Quarters} Quarter(s) and {Nickels} Nickel(s).";
+            }
+            else if (Dimes != 0 && Nickels != 0)
+            {
+                return $"Your change is {Dimes} Dime(s) and {Nickels} Nickel(s).";
+            }
+            else if (Quarters != 0)
+            {
+                return $"Your change is {Quarters} Quarter(s).";
+            }
+            else if (Dimes != 0)
+            {
+                return $"Your change is {Dimes} Dime(s).";
+            }
+            else if (Nickels != 0)
+            {
+                return $"Your change is {Nickels} Nickel(s).";
+            }
+            else
+            {
+                return "No change for you!";
+            }
+           
         }
     }
 }

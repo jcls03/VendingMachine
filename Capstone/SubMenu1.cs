@@ -12,30 +12,24 @@ namespace Capstone
             this.vm = vm;
         }
 
+        /// <summary>
+        /// Displays item list
+        /// </summary>
         public void Display()
-        {
-           
-            
-                Console.WriteLine();
-                Console.WriteLine("Here are your wonderful snack options!!!");
+        {            
+            Console.WriteLine();
+            Console.WriteLine("Here are your wonderful snack options!!!");
 
             List<VendingMachineItem> stock = vm.Stock;
 
             foreach(VendingMachineItem item in stock)
             {
-                Console.WriteLine($"{item.SlotIdentifier.PadLeft(10)} {item.Name.PadRight(20)} {item.Price}");
+                Console.WriteLine($"{item.SlotIdentifier.PadLeft(10)} {item.Name.PadRight(20)} {item.Price}\t Qty. ({item.Quantity}) ");
             }
 
             Console.WriteLine();
             Console.WriteLine("Hit Enter to go back to the Main Menu to purchase your delicious snack!");
             Console.WriteLine();
-            
-
-        
-           
-
-
-
         }
     }
 }
