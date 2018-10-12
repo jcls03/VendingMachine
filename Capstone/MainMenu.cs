@@ -18,10 +18,14 @@ namespace Capstone
                 PrintHeader();
 
                 Console.WriteLine();
-                Console.WriteLine("Main Menu");
+                Console.WriteLine("Last Resort Vending Machine Main Menu");
+                Console.WriteLine();
                 Console.WriteLine("1 --->> Display Vending Machine Items ");
+                Console.WriteLine();
                 Console.WriteLine("2 --->> Purchase ");
+                Console.WriteLine();
                 Console.WriteLine("Q --->> Quit ");
+                Console.WriteLine();
 
                 Console.Write("What option do you want to select? ");
                 string input = Console.ReadLine();

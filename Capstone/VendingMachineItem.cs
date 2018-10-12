@@ -54,7 +54,7 @@ namespace Capstone
             this.Name = name;
             this.Price = price;
             this.SlotIdentifier = slotIdentifier;
-            this.Quantity = 5;          
+            this.Quantity = 1;          
         }
 
         /// <summary>

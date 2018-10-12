@@ -26,14 +26,13 @@ namespace Capstone
         /// </summary>
         public decimal TotalChange { get; private set; }
 
-        public void CalculatedChange (decimal FeedMoney, decimal totalPurchaseAmount)
+        public string CalculatedChange (decimal balance)
         {
             decimal change = 0M;
 
-            change = FeedMoney - totalPurchaseAmount;
+            change = balance;
 
-            TotalChange = change;
-
+           
             while (change -.25M >= 0.0M)
             {
                 change -= .25M;
@@ -49,6 +48,11 @@ namespace Capstone
                 change -= .05M;
                 Nickels++;
             }
+
+
+
+
+            return $"Your change is {Quarters} Quarters and {Dimes} Dimes.";
         }
     }
 }

@@ -31,6 +31,18 @@ namespace Capstone
             return Balance;
         }
 
+        public bool IsInStock(VendingMachineItem item)
+        {
+            if(item.Quantity > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Selecting a product from a location in vending machine
         /// </summary>
@@ -41,7 +53,7 @@ namespace Capstone
             VendingMachineItem vmi = null;
             foreach(VendingMachineItem item in Stock)
             {
-                if(item.SlotIdentifier == SlotIdentifier)
+                if(item.SlotIdentifier == SlotIdentifier && item.Quantity > 0)
                 {                 
                     vmi = item;
                     item.Quantity -= 1;
@@ -52,15 +64,15 @@ namespace Capstone
                 
         }
         
-        /// <summary>
-        /// Dispense the item
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public string GiveItem (string name)
-        {
-            return null;
-        }       
+        ///// <summary>
+        ///// Dispense the item
+        ///// </summary>
+        ///// <param name="name"></param>
+        ///// <returns></returns>
+        //public string GiveItem (string name)
+        //{
+        //    return null;
+        //}       
 
         /// <summary>
         /// Gives change to user (if needed)
@@ -71,7 +83,7 @@ namespace Capstone
         {
             if(Balance < vmi.Price)
             {
-                Console.WriteLine("This item costs more than you can afford. Give us more money, ya cheapskate!");
+                
                 return 0.00M;
             }
             return 0.00M;
