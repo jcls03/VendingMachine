@@ -22,17 +22,20 @@ namespace Capstone
                 Console.WriteLine();
                 Console.WriteLine("Make a delicious unhealthy purchase");
                 Console.WriteLine();
-                Console.WriteLine(" [1] --->> Feed Me Money!!!");
+                Console.WriteLine("___ 1  <<--->> Feed Me Money! ___");
                 Console.WriteLine();
-                Console.WriteLine(" [2] --->> Select your junk food");
+                Console.WriteLine("___ 2 <<--->> Select your junk food ___");
                 Console.WriteLine();
-                Console.WriteLine(" [3] --->> Finish Transaction");
+                Console.WriteLine("___ 3 <<--->> Finish Transaction ___");
                 Console.WriteLine();
-                Console.WriteLine(" [Q] --->> Return to Main Menu");
+                Console.WriteLine("___ Q <<--->> Return to Main Menu ___");
                 Console.WriteLine();
-                Console.WriteLine($"Your balance is ${vm.Balance}");
+                Console.WriteLine($"     ***Your balance is ${vm.Balance} ***");
                 Console.WriteLine();
-                Console.Write("What option do you want to select? ");
+                Console.Write("____What option do you want to select? ____ ");
+                Console.WriteLine();
+                Console.WriteLine();
+
                 string input = Console.ReadLine().ToUpper();
                 Console.WriteLine();
                
@@ -47,8 +50,7 @@ namespace Capstone
                     {
                         decimal amount = decimal.Parse(moneyGiven);
                         vm.FeedMoney(amount);
-                        Console.WriteLine();
-                        Console.WriteLine($"Your balance is ${vm.Balance}.");
+                        Console.WriteLine($"     ***Your balance is ${vm.Balance} ***");
                         Console.WriteLine();
                         Console.WriteLine("Hit Enter to go back to select your junk food.");
                         Console.WriteLine();
@@ -58,16 +60,18 @@ namespace Capstone
                         Console.WriteLine("What in tarnation did you just do?  Let's try again.");
                         Console.WriteLine();
                         Console.WriteLine("Hit Enter to go back to select your junk food.");
-                    }                   
+                        Console.WriteLine();
+
+                    }
                 }
                 else if (input == "2")
                 {
                     Console.WriteLine();
-                    Console.WriteLine($"Your balance is ${vm.Balance}.");
+                    Console.WriteLine($"     ***Your balance is ${vm.Balance} ***");
                     Console.WriteLine();
                     Console.WriteLine("Displaying Vending Machine Items");
                     Console.WriteLine();
-                    Console.WriteLine("Here are your wonderful snack options!!!");
+                    Console.WriteLine("****  Here are your wonderful snack options  ****");
                     Console.WriteLine();
 
                     List<VendingMachineItem> stock = vm.Stock;
@@ -91,13 +95,13 @@ namespace Capstone
                         Console.WriteLine();
                         Console.WriteLine($"Here is your junk food ... {vmi.Name}, {noises}.");
                         Console.WriteLine();
-                        Console.WriteLine($"Your balance is ${vm.Balance}");
+                        Console.WriteLine($"     ***Your balance is ${vm.Balance} ***");
                         Console.WriteLine();
                         Console.WriteLine("Hit ENTER to make another unhealthy eating decision or finish your transaction.");
+                        Console.WriteLine();
                     }
                     catch (VendingMachineException ex)
-                    {
-                        
+                    {                    
                         Console.WriteLine(ex.Message);
                         Console.WriteLine();
                         Console.WriteLine("Hit Enter to go back to select your junk food.");
@@ -110,9 +114,9 @@ namespace Capstone
                     Console.WriteLine(customerChange);
                     vm.ClearBalance();
                     Console.WriteLine();
-                    Console.WriteLine($"The Last Resort Vending Machine's balance is ${vm.Balance}");
+                    Console.WriteLine($"__* The Last Resort Vending Machine's balance is ${vm.Balance} *__");
                     Console.WriteLine();
-                    Console.WriteLine("Keep the change, ya filthy animal!");
+                    Console.WriteLine("****Keep the change, ya filthy animal!****");
                     Console.WriteLine();
                     break;
                 }

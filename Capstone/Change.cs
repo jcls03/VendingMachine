@@ -53,7 +53,6 @@ namespace Capstone
                 change -= .05M;
                 Nickels++;
             }
-
             if (Quarters != 0 && Dimes != 0 && Nickels != 0)
             {
                 return $"Your change is {Quarters} Quarter(s), {Dimes} Dime(s), and {Nickels} Nickel(s).";
@@ -85,8 +84,7 @@ namespace Capstone
             else
             {
                 return "No change for you!";
-            }
-           
+            }           
         }
     }
 }

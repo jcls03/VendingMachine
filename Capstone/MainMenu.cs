@@ -26,20 +26,27 @@ namespace Capstone
             {
                 PrintHeader();
                 Console.WriteLine();
-                Console.WriteLine("Last Resort Vending Machine Main Menu");
                 Console.WriteLine();
-                Console.WriteLine(" [1] --->> Display Vending Machine Items ");
+                Console.WriteLine("___*Last Resort Vending Machine Main Menu*___");
                 Console.WriteLine();
-                Console.WriteLine(" [2] --->> Purchase ");
                 Console.WriteLine();
-                Console.WriteLine(" [Q] --->> Quit (if you dare!) ");
+                Console.WriteLine(" __ 1 __ <<--->> Display Vending Machine Items ");
                 Console.WriteLine();
-                Console.Write("What option do you want to select? ");
+                Console.WriteLine(" __ 2 __ <<--->> Purchase ");
+                Console.WriteLine();
+                Console.WriteLine(" __ Q __ <<--->> Quit (if you dare!) ");
+                Console.WriteLine();
+                Console.Write("_____ What option do you want to select? _____ ");
+                Console.WriteLine();
+                Console.WriteLine();
+
                 string input = Console.ReadLine().ToUpper();
 
                 if (input == "1")
                 {
-                    Console.WriteLine("Displaying Vending Machine Items");
+                    Console.WriteLine();
+
+                    Console.WriteLine("____Displaying Vending Machine Items____");
                     Submenu1 displayItems = new Submenu1(vm);
                     displayItems.Display();                    
                 }
@@ -67,7 +74,7 @@ namespace Capstone
         /// </summary>
         private void PrintHeader()
         {
-            Console.WriteLine("WELCOME TO THE JERK COMPANY");
+            Console.WriteLine("---------WELCOME TO THE JERK COMPANY---------");
         }
     }
 }

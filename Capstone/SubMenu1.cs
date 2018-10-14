@@ -18,7 +18,10 @@ namespace Capstone
         public void Display()
         {            
             Console.WriteLine();
-            Console.WriteLine("Here are your wonderful snack options!!!");
+            Console.WriteLine();
+            Console.WriteLine("****  Here are your wonderful snack options  ****");
+            Console.WriteLine();
+
 
             List<VendingMachineItem> stock = vm.Stock;
 
