@@ -49,7 +49,17 @@ namespace Capstone
                     try
                     {
                         decimal amount = decimal.Parse(moneyGiven);
-                        vm.FeedMoney(amount);
+
+                        if (amount < 0)
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("HAHA What is this? We don't take negative money here pal!");
+                        }
+                        else
+                        {
+                            vm.FeedMoney(amount);
+                        }
+
                         Console.WriteLine($"     ***Your balance is ${vm.Balance} ***");
                         Console.WriteLine();
                         Console.WriteLine("Hit Enter to go back to select your junk food.");

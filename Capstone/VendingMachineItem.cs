@@ -43,7 +43,7 @@ namespace Capstone
         public int Quantity { get; set; }
 
         /// <summary>
-        /// Instantiates a new vending machine Item
+        /// Initializes a new instance of the <see cref="VendingMachineItem"/> class.        
         /// </summary>
         /// <param name="type">Sets the type</param>
         /// <param name="name">Sets the name</param>
@@ -54,7 +54,24 @@ namespace Capstone
             this.Name = name;
             this.Price = price;
             this.SlotIdentifier = slotIdentifier;
-            this.Quantity = 5;          
+            this.Quantity = 5;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VendingMachineItem"/> class.        
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
+        /// <param name="price"></param>
+        /// <param name="slotIdentifier"></param>
+        /// <param name="initialQuantity">The initial quantity to have in stock.</param>
+        public VendingMachineItem(string type, string name, decimal price, string slotIdentifier, int initialQuantity)
+        {
+            this.Type = type;
+            this.Name = name;
+            this.Price = price;
+            this.SlotIdentifier = slotIdentifier;
+            this.Quantity = initialQuantity;
         }
 
         /// <summary>
@@ -63,15 +80,15 @@ namespace Capstone
         /// <returns></returns>
         public string GetsConsumed(string Type)
         {
-            if(Type == "Chip")
+            if (Type == "Chip")
             {
                 return "Crunch Crunch, Yum Yum!";
             }
-            else if(Type == "Candy")
+            else if (Type == "Candy")
             {
                 return "Munch Munch, Yum Yum!";
             }
-            else if(Type == "Drink")
+            else if (Type == "Drink")
             {
                 return "Glug Glug, Yum Yum!";
             }
@@ -81,7 +98,7 @@ namespace Capstone
             }
             else
             {
-                return "";
+                return string.Empty;
             }
         }
     }

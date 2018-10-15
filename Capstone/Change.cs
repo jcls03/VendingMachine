@@ -17,42 +17,50 @@ namespace Capstone
         public int Nickels { get; private set; }
 
         /// <summary>
-        /// Holds the amount of dimes
+        /// Gets the amount of dimes
         /// </summary>
         public int Dimes { get; private set; }
 
         /// <summary>
         /// Holds the change to return to user
         /// </summary>
-        /// <param name="balance"></param>
+        /// <param name="balance">the balance to deposit</param>
         /// <returns>string</returns>
-        public string CalculatedChange (decimal balance)
+        public string CalculatedChange(decimal balance)
         {
             Log newLog = new Log();
             string transaction = " GIVE CHANGE:  $";
             transaction += balance;
 
-            decimal change = 0M;           
+            decimal change = 0M;
             change = balance;
 
             transaction = transaction + " $" + 0;
             newLog.WriteToLog(transaction.PadLeft(20));
 
-            while (change -.25M >= 0.0M)
+            while (change - .25M >= 0.0M)
             {
                 change -= .25M;
-                Quarters++;             
+                this.Quarters++;
             }
-            while (change -.10M >= 0.0M)
+
+            while (change - .10M >= 0.0M)
             {
                 change -= .10M;
-                Dimes++;
+                this.Dimes++;
             }
-            while (change -.05M >= 0.0M)
+
+            while (change - .05M >= 0.0M)
             {
                 change -= .05M;
-                Nickels++;
+                this.Nickels++;
             }
+
+            return this.GetMessageForChange();
+        }
+
+        private string GetMessageForChange()
+        {
             if (Quarters != 0 && Dimes != 0 && Nickels != 0)
             {
                 return $"Your change is {Quarters} Quarter(s), {Dimes} Dime(s), and {Nickels} Nickel(s).";
@@ -84,7 +92,7 @@ namespace Capstone
             else
             {
                 return "No change for you!";
-            }           
+            }
         }
     }
 }

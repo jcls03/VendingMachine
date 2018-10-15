@@ -24,21 +24,6 @@ namespace CapstoneTests
             Assert.AreEqual(4, balance);
         }
 
-        [TestMethod]
-        public void IsTheItemStocked_ReturnTrue()
-        {
-            List<VendingMachineItem> items = new List<VendingMachineItem>()
-            { new VendingMachineItem("chip", "dkd", 4.0M, "A1") };
-            // Arrange
-            VendingMachine vm = new VendingMachine(items);
-
-            // Act
-            bool isStocked = vm.IsInStock(items[0]);
-
-            // Assert
-            Assert.IsTrue(isStocked);
-
-        }
 
         [TestMethod]
         public void CanWeGetProductWithSlotIdentifier()
@@ -69,9 +54,34 @@ namespace CapstoneTests
             decimal balance = vm.FeedMoney(0.00M);
 
             VendingMachineItem vmi = vm.SelectProduct("sfa");
-            // Assert
-            
+        }
 
+        [TestMethod]
+        [ExpectedException(typeof(VendingMachineException))]
+        public void VendingMachineItem_IsOutOfStock()
+        {
+            List<VendingMachineItem> items = new List<VendingMachineItem>()
+            {
+                new VendingMachineItem("chip", "dkd", 4.0M, "sfa", 0)
+            };
+            VendingMachine vm = new VendingMachine(items);
+            vm.FeedMoney(5);
+
+            vm.SelectProduct("sfa");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(VendingMachineException))]
+        public void VendingMachineItem_InvalidSlot()
+        {
+            List<VendingMachineItem> items = new List<VendingMachineItem>()
+            {
+                new VendingMachineItem("chip", "dkd", 4.0M, "A1", 0)
+            };
+            VendingMachine vm = new VendingMachine(items);
+            vm.FeedMoney(5);
+
+            vm.SelectProduct("A5");
         }
 
     }

@@ -7,11 +7,6 @@ namespace Capstone
     public class VendingMachine
     {
         /// <summary>
-        /// Instantiates a new vending machine item
-        /// </summary>
-        public VendingMachineItem vmi;
-
-        /// <summary>
         /// Holds vending machine stock
         /// </summary>        
         public List<VendingMachineItem> Stock { get; }
@@ -19,7 +14,7 @@ namespace Capstone
         /// <summary>
         /// Holds the vending machine balance
         /// </summary>
-        public decimal Balance { get; protected set; }
+        public decimal Balance { get; private set; }
 
         /// <summary>
         /// Contstructor to instantiate a new vending machine
@@ -43,60 +38,40 @@ namespace Capstone
 
                 transaction = transaction + " $" + Balance;
                 newLog.WriteToLog(transaction.PadRight(20));
+            }
 
-                return Balance;
-            }
-            else
-            {
-                Console.WriteLine();
-                Console.WriteLine("HAHA What is this? We don't take negative money here pal!");
-            }
             return Balance;
         }
 
         /// <summary>
-        /// Says if item is in stock
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns>bool</returns>
-        public bool IsInStock(VendingMachineItem item)
-        {
-            if(item.Quantity > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        /// <summary>
         /// Selecting a product from a location in vending machine
         /// </summary>
-        /// <param name="SlotIdentifier"></param>
+        /// <param name="slotIdentifier"></param>
         /// <returns>string</returns>
-        public VendingMachineItem SelectProduct(string SlotIdentifier)
+        public VendingMachineItem SelectProduct(string slotIdentifier)
         {
             VendingMachineItem vmi = null;
-            foreach(VendingMachineItem item in Stock)
+            foreach (VendingMachineItem item in Stock)
             {
-                if(item.SlotIdentifier == SlotIdentifier)
-                {                 
+                if (item.SlotIdentifier == slotIdentifier)
+                {
                     vmi = item;
                 }
             }
-            if(vmi == null)
+
+            if (vmi == null)
             {
                 throw new VendingMachineException("This position does not exist, try again, Dummy!");
             }
-            if(vmi.Quantity == 0)
+
+            if (vmi.Quantity == 0)
             {
                 throw new VendingMachineException("Sorry, this delicious goodness is so popular it is OUT OF STOCK!");
             }
-            if(Balance < vmi.Price)
+
+            if (Balance < vmi.Price)
             {
                 throw new VendingMachineException("This item costs more than you can afford. Give us more money, ya cheapskate!");
-               
             }
 
             Log newLog = new Log();
@@ -108,8 +83,9 @@ namespace Capstone
             transaction = transaction + " $" + Balance;
             newLog.WriteToLog(transaction.PadLeft(20));
 
-            return vmi;               
+            return vmi;
         }
+
         /// <summary>
         /// Clears the balance
         /// </summary>
